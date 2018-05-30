@@ -1,0 +1,99 @@
+body {
+  background-color: #282f39 !important;
+  color: #555e6c;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.experd-color {
+  color: #FBAA33;
+}
+
+.experd-grey {
+  color: #555e6c;
+}
+
+table {
+  border-collapse: inherit !important;
+  border-spacing: 0;
+}
+
+table .white,
+table .white a {
+  color: #fff;
+}
+
+table .experd-color,
+table .experd-color a {
+  color: #FBAA33 !important;
+}
+
+table th,
+table td {
+  border: 1px solid #555e6c;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+table thead {
+  color: #FBAA33;
+}
+
+table thead tr:first-child th:first-child {
+  border-radius: 1.5em 0 0 1.5em;
+}
+
+table thead tr:first-child th:last-child {
+  border-radius: 0 1.5em 1.5em 0;
+}
+
+table thead tr:first-child th:first-child:last-child {
+  border-radius: 1.5em;
+}
+
+table tbody:before {
+  content: "-";
+  display: block;
+  line-height: 1em;
+  color: transparent;
+}
+
+table tbody tr:first-child td:first-child {
+  border-radius: 1.5em 0 0 0;
+}
+
+table tbody tr:first-child td:last-child {
+  border-radius: 0 1.5em 0 0;
+}
+
+table tbody tr:first-child td:first-child:last-child {
+  border-radius: 1.5em 1.5em 0 0;
+}
+
+table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 1.5em;
+}
+
+table tbody tr:last-child td:last-child {
+  border-radius: 0 0 1.5em 0;
+}
+
+table tbody tr:last-child td:first-child:last-child {
+  border-radius: 0 0 1.5em 1.5em;
+}
+
+table tbody tr:first-child:last-child td:first-child {
+  border-radius: 1.5em 0 0 1.5em;
+}
+
+table tbody tr:first-child:last-child td:last-child {
+  border-radius: 0 1.5em 1.5em 0;
+}
+
+table tbody tr:first-child:last-child td:first-child:last-child {
+  border-radius: 1.5em;
+}
+
+table tbody tr:nth-child(even) {
+  background: #2c353e;
+}

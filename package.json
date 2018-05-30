@@ -1,0 +1,55 @@
+{
+  "name": "experdcoachapi",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node .",
+    "posttest": "npm run lint && nsp check",
+    "build:sdk": "./node_modules/.bin/lb-sdk server/server client/sdk -l angular2 -d ng2web -i disabled",
+    "server:build": "slc build --npm",
+    "server:deploy": "slc deploy --service experdcoachapi  http://192.168.0.40",
+    "build-css": ".\\bin\\build-css",
+    "watch-css": ".\\bin\\watch-css"
+  },
+  "engines": {
+    "node": "7.0.0"
+  },
+  "dependencies": {
+    "async": "2.4.1",
+    "compression": "^1.0.3",
+    "consolidate": "^0.14.5",
+    "cors": "^2.8.3",
+    "exceljs": "0.4.12",
+    "helmet": "3.6.1",
+    "lodash": "4.17.4",
+    "loopback": "2.38.0",
+    "loopback-boot": "^2.24.1",
+    "loopback-component-explorer": "^4.2.0",
+    "loopback-component-storage": "3.2.0",
+    "loopback-connector-mysql": "^4.2.0",
+    "loopback-counts-mixin": "^1.0.1",
+    "moment": "^2.18.1",
+    "moment-precise-range-plugin": "1.2.3",
+    "phantom-html-to-pdf": "^0.5.4",
+    "phantomjs-prebuilt": "^2.1.14",
+    "pug": "^2.0.0-rc.2",
+    "serve-favicon": "^2.4.3",
+    "strong-error-handler": "2.1.0",
+    "unstream": "^2.0.0"
+  },
+  "devDependencies": {
+    "@mean-expert/loopback-sdk-builder": "^2.1.0-rc.12",
+    "eslint": "^4.0.0",
+    "eslint-config-loopback": "8.0.0",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
+    "nsp": "^2.6.3"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "UNLICENSED",
+  "description": "experdcoachapi"
+}

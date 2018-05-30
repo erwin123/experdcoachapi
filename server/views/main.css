@@ -1,0 +1,298 @@
+@import "http://fonts.googleapis.com/css?family=Lato";
+@font-face {
+  font-family: "experd-font";
+  src: url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.eot");
+  src: url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.eot?#iefix") format("embedded-opentype"), url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.woff") format("woff"), url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.ttf") format("truetype"), url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.svg#experd-font") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[data-icon]:before {
+  font-family: "experd-font" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "experd-font" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-experd-logo-wide:before {
+  content: "\62"; }
+
+.icon-profile-button:before {
+  content: "\63"; }
+
+.icon-profile-icon:before {
+  content: "\64"; }
+
+.icon-task-button:before {
+  content: "\65"; }
+
+.icon-task-icon:before {
+  content: "\66"; }
+
+.icon-team-button:before {
+  content: "\67"; }
+
+.icon-experd-logo:before {
+  content: "\61"; }
+
+.icon-check-empty:before {
+  content: "\69"; }
+
+.icon-star-filled:before {
+  content: "\6b"; }
+
+.icon-check-marked:before {
+  content: "\6a"; }
+
+.icon-star-outline:before {
+  content: "\6c"; }
+
+.icon-team-icon:before {
+  content: "\6d"; }
+
+.icon-arrow-left:before {
+  content: "\6f"; }
+
+.icon-arrow-right:before {
+  content: "\70"; }
+
+.icon-email:before {
+  content: "\68"; }
+
+.icon-lock:before {
+  content: "\6e"; }
+
+.icon-check-off:before {
+  content: "\71"; }
+
+.icon-check-on:before {
+  content: "\72"; }
+
+body {
+  margin-left: 200px !important;
+  margin-right: 200px !important;
+  font-family: Lato;
+  background: #282f39 !important; }
+  body h1,
+  body h2,
+  body p {
+    max-width: 800px;
+    text-align: justify; }
+  body .flex {
+    display: flex; }
+  body .text-center {
+    text-align: center; }
+  body .experd-color {
+    color: #FBAA33; }
+  body .experd-grey {
+    color: #555e6c; }
+  body .white,
+  body .experd-white {
+    color: #fff; }
+  body .experd-red {
+    color: #ff0000; }
+  body .main-title {
+    clear: both;
+    font-size: 5em;
+    padding-top: 13cm;
+    width: 100%; }
+  body .coach-title {
+    padding-top: 13cm; }
+  body .completed {
+    stroke: #FBAA33;
+    fill: #FBAA33; }
+  body .completeTarget {
+    stroke: #FFF;
+    fill: #FFF; }
+  body .not-complete {
+    stroke: #555e6c;
+    fill: #555e6c; }
+  body .text-left {
+    text-align: left; }
+  body .text-right {
+    text-align: right; }
+  body .icon-checklist {
+    float: left;
+    position: absolute;
+    top: 0;
+    left: -21px; }
+  body .margin-left {
+    margin-left: 25px; }
+  body .push-left {
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0; }
+  body .push-right {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0; }
+  body .push-right-target {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 30px; }
+  body .position-relative {
+    position: relative; }
+  body .table-competence-header {
+    vertical-align: bottom;
+    border: 0; }
+  body .vertical-text {
+    /* Something you can count on */
+    height: 140px;
+    white-space: nowrap;
+    border: 0; }
+    body .vertical-text > div {
+      -ms-transform: translate(25px, 51px) rotate(315deg);
+      /* IE 9 */
+      -webkit-transform: translate(25px, 51px) rotate(315deg);
+      /* Chrome, Safari, Opera */
+      transform: translate(25px, 51px) rotate(315deg);
+      width: 30px; }
+      body .vertical-text > div > span {
+        border-bottom: 1px solid #ccc;
+        padding: 5px 10px; }
+  body .main {
+    width: 20cm;
+    height: 29.7cm;
+    
+    margin: 0 auto;
+    margin-left: 200px !important;
+  margin-right: 200px !important;
+    page-break-after: always;
+    position: relative; }
+    body .main header {
+      position: absolute;
+      top: 1cm;
+      width: 100%;
+      border-bottom: #555e6c 2px solid; }
+      body .main header img.logo {
+        width: 3cm; }
+    body .main content {
+      margin-top: 1cm;
+      clear: both; }
+      body .main content .header-space {
+        height: 100px;
+        width: 100%; }
+      body .main content p.label {
+        font-size: 1em !important;
+        margin-bottom: 0px; }
+        body .main content p.label.profile-desc {
+          font-size: 0.6em !important; }
+      body .main content .average-rate i {
+        font-size: 3em; }
+    body .main footer {
+      position: absolute;
+      top: 28cm;
+      width: 100%; }
+      body .main footer .push-right {
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 0; }
+      body .main footer img.logo {
+        width: 3cm; }
+  body table th, body table td {
+    border: 1px solid #555e6c;
+    padding: 0.1px;
+    text-align: center; }
+  body table {
+    border-collapse: inherit !important;
+    border-spacing: 0;
+    font-size: 0.5em; }
+    body table.table-padding td {
+      padding: 10px; }
+    body table .white {
+      color: #fff; }
+      body table .white a {
+        color: #fff; }
+    body table .experd-color {
+      color: #fbaa33 !important; }
+      body table .experd-color a {
+        color: #fbaa33 !important; }
+    body table thead {
+      color: #fbaa33; }
+      body table thead tr:first-child th:first-child {
+        border-radius: 1.5em 0 0 1.5em; }
+        body table thead tr:first-child th:first-child:last-child {
+          border-radius: 1.5em; }
+      body table thead tr:first-child th:last-child {
+        border-radius: 0 1.5em 1.5em 0; }
+    body table tbody:before {
+      content: "-";
+      display: block;
+      line-height: 1em;
+      color: transparent; }
+    body table tbody tr:first-child td:first-child {
+      border-radius: 1.5em 0 0 0; }
+      body table tbody tr:first-child td:first-child:last-child {
+        border-radius: 1.5em 1.5em 0 0; }
+    body table tbody tr:first-child td:last-child {
+      border-radius: 0 1.5em 0 0; }
+    body table tbody tr:first-child:last-child td:first-child {
+      border-radius: 1.5em 0 0 1.5em; }
+      body table tbody tr:first-child:last-child td:first-child:last-child {
+        border-radius: 1.5em; }
+    body table tbody tr:first-child:last-child td:last-child {
+      border-radius: 0 1.5em 1.5em 0; }
+    body table tbody tr:nth-child(even) {
+      background: #2c353e; }
+    body table tbody tr:last-child td:first-child {
+      border-radius: 0 0 0 1.5em; }
+      body table tbody tr:last-child td:first-child:last-child {
+        border-radius: 0 0 1.5em 1.5em; }
+    body table tbody tr:last-child td:last-child {
+      border-radius: 0 0 1.5em 0; }
+
+page[size="A4"] {
+  background: #282f39 !important;
+  width: 21cm;
+  height: 29.7cm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+  page-break-after: always; }
+
+@media print {
+  body,
+  page[size="A4"] {
+    margin: 0;
+    box-shadow: 0;
+    background-color: #282f39 !important;
+    -webkit-print-color-adjust: exact; } }
+
+.chartdiv {
+  width: 100%;
+  height: 420px; }
+
+.chartLeft,
+#chartCoachStatSex,
+#chartCoacheeStatSex,
+.chartRight,
+#chartCoachStatDivision,
+#chartCoacheeStatDivision,
+#chartTaskType {
+  width: 100%;
+  height: 420px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  clear: both; }

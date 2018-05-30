@@ -1,0 +1,35 @@
+{
+  "name": "competenceSet",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "competenceLevels": {
+      "type": "hasMany",
+      "model": "competenceLevel",
+      "foreignKey": "",
+      "through": "competenceSetDetail"
+    },
+    "company": {
+      "type": "belongsTo",
+      "model": "company",
+      "foreignKey": "companyId"
+    },
+    "employees": {
+      "type": "hasMany",
+      "model": "employee",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

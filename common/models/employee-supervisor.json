@@ -1,0 +1,22 @@
+{
+  "name": "employeeSupervisor",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "supervisor": {
+      "type": "belongsTo",
+      "model": "employee"
+    },
+    "employee": {
+      "type": "belongsTo",
+      "model": "employee"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

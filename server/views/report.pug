@@ -1,0 +1,507 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title= 'REPORT'
+    script(src='//www.amcharts.com/lib/3/amcharts.js')
+    script(src='//www.amcharts.com/lib/3/pie.js')
+    script(src='//www.amcharts.com/lib/3/serial.js')
+    script(src='//www.amcharts.com/lib/3/themes/light.js')
+    script(type="text/javascript").
+      AmCharts.makeChart("chartCoachStatSex", {
+        "type": "pie",
+        "titles": [{
+          "text": "Sex"
+        }],
+        "theme": "light",
+        "outlineColor": "",
+        "color": "#FFFFFF",
+        "borderAlpha": 0,
+        "startDuration": 0,
+        "dataProvider": !{JSON.stringify(demographicReport.coachStatistic.sex)},
+        "valueField": "total",
+        "titleField": "type",
+        "balloon": {
+          "fixedPosition": true
+        }
+      });
+      AmCharts.makeChart("chartCoachStatDivision", {
+        "type": "pie",
+        "titles": [{
+          "text": "Division"
+        }],
+        "theme": "light",
+        "outlineColor": "",
+        "color": "#FFFFFF",
+        "borderAlpha": 0,
+        "startDuration": 0,
+        "dataProvider": !{JSON.stringify(demographicReport.coachStatistic.division)},
+        "valueField": "total",
+        "titleField": "type",
+        "balloon": {
+          "fixedPosition": true
+        }
+      });
+      AmCharts.makeChart("chartCoacheeStatSex", {
+        "type": "pie",
+        "titles": [{
+          "text": "Sex"
+        }],
+        "theme": "light",
+        "outlineColor": "",
+        "color": "#FFFFFF",
+        "borderAlpha": 0,
+        "startDuration": 0,
+        "dataProvider": !{JSON.stringify(demographicReport.coacheeStatistic.sex)},
+        "valueField": "total",
+        "titleField": "type",
+        "balloon": {
+          "fixedPosition": true
+        }
+      });
+      AmCharts.makeChart("chartCoacheeStatDivision", {
+        "type": "pie",
+        "titles": [{
+          "text": "Division"
+        }],
+        "theme": "light",
+        "outlineColor": "",
+        "color": "#FFFFFF",
+        "borderAlpha": 0,
+        "startDuration": 0,
+        "dataProvider": !{JSON.stringify(demographicReport.coacheeStatistic.division)},
+        "valueField": "total",
+        "titleField": "type",
+        "balloon": {
+          "fixedPosition": true
+        }
+      });
+      AmCharts.makeChart("chartTaskType", {
+        "type": "pie",
+        "theme": "light",
+        "outlineColor": "",
+        "color": "#FFFFFF",
+        "borderAlpha": 0,
+        "startDuration": 0,
+        "dataProvider": !{JSON.stringify(demographicReport.taskStatistic)},
+        "valueField": "total",
+        "titleField": "type",
+        "balloon": {
+          "fixedPosition": true
+        }
+      });
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    style
+      include ./main.css
+  body
+    mixin progressbar(label, target, completed, completedBefore, completeClass, beforeClass)
+      - var showBefore = true;
+      - var x_startposition = 5;
+      - var y_startposition = 10;
+      - var node_width = 50;
+      - var outer_circle = 10;
+      - var outer_stroke = 10;
+      - var inner_circle = 7;
+      - var inner_stroke = 5;
+      - var addY = 25;
+      svg(width=x_startposition + (target * node_width + outer_circle) + 70, height=outer_circle + y_startposition + addY, xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+        defs
+          g#step
+            line(x1=x_startposition, y1=y_startposition, x2=x_startposition + node_width, y2=y_startposition, stroke-width=outer_stroke, style='stroke:#555e6c; stroke-linecap:round')
+            circle(cx=x_startposition + node_width, cy=y_startposition, r=outer_circle, style='fill:#555e6c; stroke-width:0;stroke: #555e6c;')
+            line(x1=x_startposition, y1=y_startposition, x2=x_startposition + node_width, y2=y_startposition, stroke-width=inner_stroke, style='stroke:inherit; stroke-linecap:round')
+            circle(cx=x_startposition + node_width, cy=y_startposition, r=inner_circle, style='fill:inherit; stroke-width:0;stroke: inherit;')
+        - var i = 0;
+        while i < target
+          - i++
+          - transformtext = 'translate( ' + (target - i) * node_width + ' 0)'
+            use(transform=transformtext, class=(completedBefore) > (target - i) ? beforeClass : 'not-complete', xlink:href='#step')
+        if showBefore
+          line(x1=x_startposition, y1=y_startposition, x2=(node_width * completedBefore) + x_startposition, y2=y_startposition, stroke-width=inner_stroke, style='stroke-linecap:round', class=beforeClass)
+        - var i = 0;
+        while i < target
+          - i++
+          - transformtext = 'translate( ' + (target - i) * node_width + ' ' + addY + ')'
+            use(transform=transformtext, class=(completed) > (target - i) ? completeClass : 'not-complete', xlink:href='#step')
+        line(x1=x_startposition, y1=y_startposition + addY, x2=(node_width * completed) + x_startposition, y2=y_startposition + addY, stroke-width=inner_stroke, style='stroke-linecap:round', class=completeClass)
+        text(x=x_startposition + (target * node_width + outer_circle) + (outer_circle * 2) - 10, y=(outer_circle * 2 ) + y_startposition + 10, font-family='Verdana', font-size=(outer_circle * 2 * 2) + 5, style='fill: #FBAA33') #{label}
+    .main.flex.page
+      h2.experd-color.text-center.main-title Report
+      footer
+        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+    each employees, index in overviewEmployeeList
+      .main.flex.page
+        header
+          h2.experd-color Coach Report
+          h4.experd-color.push-right #{reportMonth}
+        content.w-100
+          .header-space
+          h2.experd-grey Overview
+          p.white #{companyProfile}
+          table.w-100
+            thead
+              tr
+                each item in columns
+                  th #{item.title}
+            tbody
+              each employee in employees
+                tr
+                  td.experd-color #{employee.name}
+                  td.experd-white #{employee.division}
+                  td.experd-white #{employee.position}
+                  td.experd-white #{employee.profile}
+                  td.experd-white #{employee.taskOnGoing}
+                  td.experd-white #{employee.taskFinish}
+                  td.experd-white #{employee.teamCount}
+                  td.experd-white #{employee.taskCreate}
+                  td.experd-white #{employee.dob}
+                  td.experd-white #{employee.sex}
+                  td.experd-white 
+                    each supervisor in employee.supervisors
+                      | #{supervisor} <br>
+                  td.experd-white
+                    each i in [1, 2, 3, 4, 5]
+                      if +employee.overall + 1 > i
+                        i.fa.experd-color.fa-star
+                      else
+                        i.fa.experd-color.fa-star-o
+                    //- i.fa.experd-color(*ngfor='let i of [1,2,3,4,5]', [ngclass]="{'fa-star': +employee.overallRate >= i, 'fa-star-o': +employee.overallRate < i }", aria-hidden='true')
+                    //- i.fa.experd-color.fa-star
+              if index + 1 === overviewEmployeeList.length
+                tr
+                  each item in columns
+                    td &nbsp;
+                tr
+                  td.experd-white(colspan='4') Total
+                  td.experd-white #{employeesTotals.taskOnGoing.length}
+                  td.experd-white #{employeesTotals.taskFinish.length}
+                  td.experd-white #{employeesTotals.teamCount}
+                  td.experd-white #{employeesTotals.taskCreate}
+                  td
+                  td
+                  td
+                  td
+                tr
+                  each item in columns
+                    td &nbsp;
+        footer
+          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          h5.experd-grey.push-right Report Experd Score
+    .main.flex.page
+      h2.experd-color.text-center.main-title Coach & <br> Coachee Report
+      footer
+        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+    each coachReport in employeeCoachReport
+      .main.page
+        h4.experd-grey.coach-title Coach
+        h3.experd-color #{coachReport.coach.name} <br><br><br>
+        h4.experd-grey Coachee
+        each coachee in coachReport.coachee
+          h2.experd-color  #{coachee.name}
+        footer
+          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          h5.experd-grey.push-right Report Experd Score
+          //- span.experd-color &nbsp;02
+      .main.flex.page
+        header
+          h2.experd-color Coach Report
+          h4.experd-color.push-right #{reportMonth}
+        content.w-100
+          .header-space
+          h3.experd-color #{coachReport.coach.name}
+          .row.summary-text
+            .col-xs-3
+              p.experd-grey.label Company
+              p.experd-grey.label Division
+              p.experd-grey.label Title
+              p.experd-grey.label Sex
+              p.experd-grey.label Age
+              p.experd-grey.label Employement Period
+              p.experd-grey.label Profile
+            .col-xs-9
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.company}
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.division}
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.position}
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.sex}
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.dob}
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.joinMoment}
+              p.experd-grey.label
+                span.experd-white #{coachReport.coach.profile}
+              p.experd-grey.label.profile-desc
+                span.experd-white #{coachReport.coach.profileDesc}
+          table.w-100
+            tbody
+              tr
+                td.experd-color Coachee
+                td.experd-color Task On Going
+                td.experd-color Task Finish
+                td.experd-color Team
+                td.experd-color Create Task
+                td.experd-color Overall
+              each coachee in coachReport.coachee       
+                tr
+                  td.experd-color #{coachee.name}
+                  td.experd-white #{coachee.taskOnGoing}
+                  td.experd-white #{coachee.taskFinish}
+                  td.experd-white #{coachee.teamCount}
+                  td.experd-white #{coachee.taskCreate}
+                  td.experd-white
+                    each i in [1, 2, 3, 4, 5]
+                      if +coachee.overall + 1 > i
+                        i.fa.experd-color.fa-star
+                      else
+                        i.fa.experd-color.fa-star-o
+          h3.experd-grey.text-center Average
+          h3.experd-grey.text-center Coaching Quality Rate
+          .average-rate.text-center
+            each i in [1, 2, 3, 4, 5]
+              if coachReport.averageOverall + 1 > i
+                i.fa.experd-color.fa-star
+              else
+                i.fa.experd-color.fa-star-o
+          //- h3.experd-grey Resume
+          //- p.experd-white Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        footer
+          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          h5.experd-grey.push-right Report Experd Score
+      each coachee in coachReport.coachee    
+        .main.flex.page
+          header
+            h2.experd-color Coachee Report
+            h4.experd-color.push-right #{reportMonth}
+          content.w-100
+            .header-space
+            h3.experd-color #{coachee.name}
+            .row
+              .col-xs-3
+                p.experd-grey.label Coach
+                p.experd-grey.label Company
+                p.experd-grey.label Division
+                p.experd-grey.label Title
+                p.experd-grey.label Sex
+                p.experd-grey.label Age
+                p.experd-grey.label Employement Period
+                p.experd-grey.label Profile
+                p.experd-grey.label &nbsp;
+              .col-xs-9
+                p.experd-grey.label
+                  span.experd-white #{coachReport.coach.name}
+                p.experd-grey.label
+                  span.experd-white #{coachee.company}
+                p.experd-grey.label
+                  span.experd-white #{coachee.division}
+                p.experd-grey.label
+                  span.experd-white #{coachee.position}
+                p.experd-grey.label
+                  span.experd-white #{coachee.sex}
+                p.experd-grey.label
+                  span.experd-white #{coachee.dob}
+                p.experd-grey.label
+                  span.experd-white #{coachee.joinMoment}
+                p.experd-grey.label
+                  span.experd-white #{coachee.profile}
+                p.experd-grey.label.profile-desc
+                  span.experd-white #{coachee.profileDesc}
+            table.w-100
+              tbody
+                tr
+                  td.experd-color Task On Going
+                  td.experd-color Task Finish
+                  td.experd-color Team
+                  td.experd-color Create Task
+                  td.experd-color Overall
+                tr
+                  td.experd-white #{coachee.taskOnGoing.length}
+                  td.experd-white #{coachee.taskFinish.length}
+                  td.experd-white #{coachee.teamCount}
+                  td.experd-white #{coachee.taskCreate}
+                  td.experd-white
+                    each i in [1, 2, 3, 4, 5]
+                      if +coachee.overall + 1 > i
+                        i.fa.experd-color.fa-star
+                      else
+                        i.fa.experd-color.fa-star-o
+            h3.experd-color.text-center Competence
+            .row
+              .col-xs-6
+                each competence, index in coachee.teammemberCompetence2
+                  p.experd-grey #{competence.name}
+                    if index === 0
+                      h4.experd-white.push-right-target TARGET
+                  +progressbar(competence.target, 5, competence.value, competence.completedBefore, 'completed', 'completeTarget')
+              .col-xs-6
+                each competence, index in coachee.teammemberCompetence1
+                  p.experd-grey #{competence.name}
+                    if index === 0
+                      h4.experd-white.push-right-target TARGET
+                  +progressbar(competence.target, 5, competence.value, competence.completedBefore, 'completed', 'completeTarget')
+              //- (label, target, completed, completedBefore, completeClass, beforeClass)
+            //- h4.experd-color.text-center Development Program Period
+            //- p.experd-white Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          footer
+            img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+            h5.experd-grey.push-right Report Experd Score
+        if coachee.taskList.length
+          each taskList in coachee.taskList
+            .main.flex.page
+              header
+                h2.experd-color List of Task
+                h4.experd-color.push-right #{reportMonth}
+              content.w-100
+                .header-space
+                .position-relative
+                  h3.experd-color #{coachee.name}
+                  if taskList.taskOnGoing.length
+                    h4.experd-grey.push-right Task On Going
+                    table.w-100.table-padding
+                      tbody
+                        each task in taskList.taskOnGoing
+                          tr
+                            td 
+                              .position-relative
+                                h3.experd-grey.text-left Competence: 
+                                  span.experd-color #{task.competenceStamp}
+                                h4.experd-color.push-right Deadline Date
+                                h5.text-right.experd-white #{moment(task.endDate).format('DD-MM-YYYY')}
+                              if task.employeeTaskDevelopments
+                                each taskDetail in task.employeeTaskDevelopments()
+                                  h5.position-relative.text-left.margin-left(class=taskDetail.passed ? 'experd-white' : 'experd-grey')
+                                    img.icon-checklist.logo(src=taskDetail.passed ? 'https://api.experd.com/app/assets/images/checked.png' : "https://api.experd.com/app/assets/images/checked-not.png")
+                                    | #{taskDetail.description}
+                              if task.Resume
+                                h4.experd-color.text-left Team Review
+                                h5.experd-white.text-left #{task.Resume}
+                              if task.employeeTaskSupervisor() && task.employeeTaskSupervisor().review.trim() !== ''
+                                h4.experd-color.text-left Supervisor Review
+                                h5.experd-white.text-left #{task.employeeTaskSupervisor().review}
+                  if taskList.taskFinish.length
+                    h4.experd-grey.text-right(class=taskList.taskOnGoing.length ? '' : 'push-right') Task Finish
+                    table.w-100.table-padding
+                      tbody
+                        each task in taskList.taskFinish
+                          tr
+                            td 
+                              .position-relative
+                                h3.experd-grey.text-left Competence: 
+                                  span.experd-color #{task.competenceStamp}
+                                h4.experd-color.push-right Deadline Date
+                              if task.employeeTaskDevelopments
+                                each taskDetail in task.employeeTaskDevelopments()
+                                  h4.experd-white.text-left
+                                    img.logo(src=taskDetail.passed ? 'https://api.experd.com/app/assets/images/checked.png' : "https://api.experd.com/app/assets/images/checked-not.png")
+                                    | #{taskDetail.description}
+                              if task.Resume
+                                h4.experd-color.text-left Team Review
+                                h5.experd-white.text-left #{task.Resume}
+                              if task.employeeTaskSupervisor() && task.employeeTaskSupervisor().review.trim() !== ''
+                                h4.experd-color.text-left Supervisor Review
+                                h5.experd-white.text-left #{task.employeeTaskSupervisor().review}
+              footer
+                img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+                h5.experd-grey.push-right Report Experd Score
+    .main.flex.page
+      header
+        h2.experd-color Organizational Report
+        h4.experd-color.push-right #{reportMonth}
+      content.w-100
+        .header-space
+        h4.experd-white Organizational Summary Report
+        table.w-100
+          tbody
+            tr
+              td.experd-color Coach
+              td.experd-grey Total Coach: 
+                span.experd-color #{demographicReport.totalCoach}
+            tr
+              td(colspan='2') 
+                div.position-relative.chartdiv &nbsp;
+                  #chartCoachStatSex
+            tr
+              td(colspan='2') 
+                div.position-relative.chartdiv &nbsp;
+                  #chartCoachStatDivision
+      footer
+        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+        h5.experd-grey.push-right Report Experd Score
+    .main.flex.page
+      header
+        h2.experd-color Organizational Report
+        h4.experd-color.push-right #{reportMonth}
+      content.w-100
+        .header-space
+        h4.experd-white Organizational Summary Report
+        table.w-100
+          tbody
+            tr
+              td.experd-color Coachee
+              td.experd-grey Total Coachee: 
+                span.experd-color #{demographicReport.totalCoachee}
+            tr
+              td(colspan='2') 
+                div.position-relative.chartdiv &nbsp;
+                  #chartCoacheeStatSex
+            tr
+              td(colspan='2') 
+                div.position-relative.chartdiv &nbsp;
+                  #chartCoacheeStatDivision
+      footer
+        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+        h5.experd-grey.push-right Report Experd Score
+    .main.flex.page
+      header
+        h2.experd-color Organizational Report
+        h4.experd-color.push-right #{reportMonth}
+      content.w-100
+        .header-space
+        h4.experd-white Organizational Summary Report
+        table.w-100
+          tbody
+            tr
+              td.experd-color Task
+              td.experd-grey Total Task: 
+                span.experd-color #{demographicReport.totalTask}
+            tr
+              td(colspan='2') 
+                div.position-relative.chartdiv &nbsp;
+                  #chartTaskType
+    each employees, index in overviewEmployeeList
+      .main.flex.page
+        header
+          h2.experd-color Organizational Report
+          h4.experd-color.push-right #{reportMonth}
+        content.w-100
+          .header-space
+          table.w-100
+            tbody
+              tr
+                td.experd-color.table-competence-header 
+                  div Competence
+                  //- div Name
+                each competence in competences
+                  td.vertical-text.experd-color 
+                    div 
+                      span #{competence.name}
+              each employee in employees
+                tr
+                  td.experd-color #{employee.name}
+                  each competence in employee.employeeCompetence
+                    if competence.print > 0
+                      td 
+                        i.fa.experd-color.fa-check
+                    else if competence.print == 0
+                      td.experd-white -
+                    else
+                      td.experd-red #{competence.print}
+        footer
+          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          h5.experd-grey.push-right Report Experd Score

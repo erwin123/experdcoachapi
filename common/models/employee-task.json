@@ -1,0 +1,68 @@
+{
+  "name": "employeeTask",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "divisionStamp": {
+      "type": "string"
+    },
+    "competenceStamp": {
+      "type": "string"
+    },
+    "Resume": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "isDone": {
+      "type": "boolean"
+    },
+    "Rating": {
+      "type": "number"
+    },
+    "isReviewed": {
+      "type": "boolean"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "employee": {
+      "type": "belongsTo",
+      "model": "employee",
+      "foreignKey": ""
+    },
+    "employeeTaskDevelopments": {
+      "type": "hasMany",
+      "model": "employeeTaskDevelopment",
+      "foreignKey": ""
+    },
+    "competence": {
+      "type": "belongsTo",
+      "model": "competence",
+      "foreignKey": ""
+    },
+    "employeeTaskSupervisor": {
+      "type": "hasOne",
+      "model": "employeeTaskSupervisor",
+      "foreignKey": ""
+    },
+    "assignedBy": {
+      "type": "belongsTo",
+      "model": "employee",
+      "foreignKey": "assignedById"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

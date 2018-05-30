@@ -1,0 +1,27 @@
+{
+  "name": "employeeTaskDevelopment",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "passed": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "employeeTask": {
+      "type": "belongsTo",
+      "model": "employeeTask",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

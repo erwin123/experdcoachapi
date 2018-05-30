@@ -1,0 +1,21 @@
+{
+  "name": "employeeCoachData",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "doTask": {
+      "type": "boolean"
+    },
+    "doEvaluateCompany": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

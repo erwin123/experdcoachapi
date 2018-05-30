@@ -1,0 +1,345 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title= 'REPORT'
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css')
+    style
+      include ./style.css
+  body
+    h2.experd-color Report
+    h2.experd-grey Overview
+    p.experd-grey Lorem ipsum
+    table.w-100.h-100
+      thead
+        tr
+          each item in columns
+            th #{item.title}
+      |   
+      tbody
+        each employee in employees
+          tr
+            td.experd-color #{employee.name}
+            td.experd-white #{employee.division}
+            td.experd-white #{employee.position}
+            if employee.employeeProfileHistories[0]
+              td.experd-white #{employee.employeeProfileHistories[0].profileStamp}
+            else
+              td.experd-white
+            td.experd-white {{ getTasks(false, employee?.employeeTasks) }}
+            td.experd-white {{ getTasks(true, employee?.employeeTasks) }}
+            td.experd-white #{employee.teamCount}
+            td.experd-white {employee.taskCreate == 0 ? &apos;-&apos; : employee.taskCreate}
+            td.experd-white #{employee.dob | age}}y
+            td.experd-white #{employee.sex}
+            td.experd-white {employee?.supervisor[0]?.name}
+            td.experd-white
+              i.fa.experd-color(*ngfor='let i of [1,2,3,4,5]', [ngclass]="{'fa-star': +employee.overallRate >= i, 'fa-star-o': +employee.overallRate < i }", aria-hidden='true')
+          |     
+          tr
+            td(*ngfor='let item of columns')
+          |     
+          tr
+            td.experd-white(colspan='4') Total
+            |       
+            td.experd-white {{totals.ongoing}}
+            |       
+            td.experd-white {{totals.finished}}
+            |       
+            td.experd-white {{totals.teamCount}}
+            |       
+            td.experd-white {{totals.created}}
+            |       
+            td
+            |       
+            td
+            |       
+            td
+            |       
+            td
+          |     
+          tr
+            td(*ngfor='let item of columns')
+    h2.experd-color Coach &amp; Coachee Report
+    div(*ngfor='let coach of coachReport.coaches')
+      div(coach='')
+        h3.experd-grey Coach
+        |     
+        h2.experd-color {{coach.name}}
+        |     
+        h3.experd-grey Coachee
+        |     
+        h2.experd-color(*ngfor='let coachee of coach.team') {{coachee.name}}
+        |     
+        h3.experd-color {{coach.name}}
+        |     
+        .row
+          .col-xs-3
+            p.experd-grey Company
+            |         
+            p.experd-grey Division
+            |         
+            p.experd-grey Title
+            |         
+            p.experd-grey Sex
+            |         
+            p.experd-grey Age
+            |         
+            p.experd-grey Employement Period
+            |         
+            p.experd-grey Profile
+          |       
+          .col-xs-9
+            p.experd-grey
+              span.experd-white {{company.name | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coach.division | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coach.position | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coach.sex | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coach.dob | age}}
+            |         
+            p.experd-grey
+              span.experd-white {{getEmployeePeriod(coach.joinDate)}}
+            |         
+            p.experd-grey
+              span.experd-white {{coach?.employeeProfileHistories[0]?.profileStamp}}
+            |         
+            p.experd-grey
+              span.experd-white {{coach?.employeeProfileHistories[0]?.profile?.description}}
+        |     
+        table.w-100.h-100
+          tr
+            td Coachee
+            |         
+            td Task On Going
+            |         
+            td Task Finish
+            |         
+            td Team
+            |         
+            td Create Task
+            |         
+            td Overall
+          |       
+          tr(*ngfor='let coachee of coach.team')
+            td.experd-color {{coachee.name}}
+            |         
+            td.experd-white {{getTasks(false, coachee?.employeeTasks)}}
+            |         
+            td.experd-white {{getTasks(true, coachee?.employeeTasks)}}
+            |         
+            td.experd-white {{coachee.teamCount? coachee.teamCount : 0}}
+            |         
+            td.experd-white {{coachee.taskCreate == 0 ? &apos;-&apos; : coachee.taskCreate}}
+            |         
+            td.experd-white
+              i.fa.experd-color(*ngfor='let i of [1,2,3,4,5]', [ngclass]="{'fa-star': +coachee.overallRate >= i, 'fa-star-o': +coachee.overallRate < i }", aria-hidden='true')
+        |     
+        h3.experd-grey Average Coaching Quality Rate
+        |     
+        span
+          i.fa.experd-color(*ngfor='let i of [1,2,3,4,5]', [ngclass]="{'fa-star': +coach.overallRate >= i, 'fa-star-o': +coach.overallRate < i }", aria-hidden='true')
+        |     
+        h3.experd-grey Overview
+        |     
+        p.experd-grey Lorem ipsum
+      |   
+      div(*ngfor='let coachee of coach.team')
+        h3.experd-color {{coachee.name}}
+        |     
+        .row
+          .col-xs-3
+            p.experd-grey Coach
+            |         
+            p.experd-grey Company
+            |         
+            p.experd-grey Division
+            |         
+            p.experd-grey Title
+            |         
+            p.experd-grey Sex
+            |         
+            p.experd-grey Age
+            |         
+            p.experd-grey Employement Period
+            |         
+            p.experd-grey Profile
+          |       
+          .col-xs-9
+            p.experd-grey
+              span.experd-white {{coach.name | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{company.name | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coachee.division | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coachee.position | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coachee.sex | titleCase}}
+            |         
+            p.experd-grey
+              span.experd-white {{coachee.dob | age}}
+            |         
+            p.experd-grey
+              span.experd-white {{getEmployeePeriod(coachee.joinDate)}}
+            |         
+            p.experd-grey
+              span.experd-white {{coachee?.employeeProfileHistories[0]?.profileStamp}}
+            |         
+            p.experd-grey
+              span.experd-white {{coachee?.employeeProfileHistories[0]?.profile?.description}}
+        |     
+        table.w-100.h-100
+          tr
+            td Task On Going
+            |         
+            td Task Finish
+            |         
+            td Team
+            |         
+            td Create Task
+            |         
+            td Overall
+          |       
+          tr
+            td.experd-white {{getTasks(false, coachee?.employeeTasks)}}
+            |         
+            td.experd-white {{getTasks(true, coachee?.employeeTasks)}}
+            |         
+            td.experd-white {{coachee.teamCount? coachee.teamCount : 0}}
+            |         
+            td.experd-white {{coachee.taskCreate == 0 ? &apos;-&apos; : coachee.taskCreate}}
+            |         
+            td.experd-white
+              i.fa.experd-color(*ngfor='let i of [1,2,3,4,5]', [ngclass]="{'fa-star': +coachee.overallRate >= i, 'fa-star-o': +coachee.overallRate < i }", aria-hidden='true')
+        |     
+        ul.list-group.container
+          h3.experd-color Competence
+          |       
+          div(*ngfor='let competence of companycompetences; let i = index')
+            li.list-group-item.row
+              .col-sm-8.offset-sm-2.text-xs-left.relative
+                p.experd-grey {{competence.name}}
+                |             
+                p.experd-grey.top-right(*ngif='i == 0') Target Level
+            |         
+            li.list-group-item.row
+              .col-sm-8.offset-sm-2.text-xs-center
+                app-progress-bar([target]='5', [completed]='getCompleted(competence, coachee?.employeeCompetence || [])', [showbefore]='true', [completedbefore]='2')
+          |       
+          h3.experd-color Development Program Period
+          |       
+          h4.experd-grey September 31th, 2016 - October 29th, 2016
+        |     
+        h3.experd-color {{coachee.name}}
+        |     
+        .row
+          .col-xs-12
+            div(*ngif='coachee.employeeTasks.length == 0') No Tasks for this Employee
+            |         
+            .row.bottom-border(*ngfor='let task of coachee.employeeTasks')
+              div(*ngif='task.isDone')
+                .col-xs-6
+                  .row
+                    .col-xs-5
+                      p.experd-grey From
+                      |                   
+                      p.experd-grey Division
+                      |                   
+                      p.experd-grey Competence
+                      |                   
+                      p.experd-grey Duration
+                    |                 
+                    .col-xs-7
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.assignedBy?.name | titleCase}}
+                      |                   
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.divisionStamp | titleCase}}
+                      |                   
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.competenceStamp | titleCase}}
+                      |                   
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.startDate | date: &apos;dd/MM/yy&apos;}} to {{task?.endDate | date: &apos;dd/MM/yy&apos;}}
+                  |               
+                  p.experd-grey Development
+                  |               
+                  p.experd-grey.dev-info(*ngfor='let development of task?.employeeTaskDevelopments')
+                    i.icon-check-empty.experd-grey([ngclass]="{'icon-check-empty': !development.passed, 'icon-check-marked': development.passed}", aria-hidden='true')
+                    | {{development.description}}
+                |             
+                .col-xs-6
+                  p.experd-grey
+                    b Supervisor Review
+                    |                 
+                    span.pull-right.experd-color(*ngfor='let i of [1,2,3,4,5]', tappable='', [ngclass]="{'icon-star-filled': task?.employeeTaskSupervisor?.rating >= i, 'icon-star-outline': task?.employeeTaskSupervisor?.rating < i}")
+                  |               
+                  p.experd-white {{task?.employeeTaskSupervisor?.review}}
+                  br
+                  br
+                  |               
+                  p.experd-grey
+                    b Team Review
+                    |                 
+                    span.pull-right.experd-color(*ngfor='let i of [1,2,3,4,5]', tappable='', [ngclass]="{'icon-star-filled': task?.Rating >= i, 'icon-star-outline': task?.Rating < i}")
+                  |               
+                  p.experd-white {{task?.Resume}}
+                |             
+                hr
+              |           
+              div(*ngif='!task.isDone')
+                .col-xs-6
+                  .row
+                    .col-xs-5
+                      p.experd-grey From
+                      |                   
+                      p.experd-grey Division
+                      |                   
+                      p.experd-grey Competence
+                      |                   
+                      p.experd-grey Duration
+                    |                 
+                    .col-xs-7
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.assignedBy?.name | titleCase}}
+                      |                   
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.divisionStamp | titleCase}}
+                      |                   
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.competenceStamp | titleCase}}
+                      |                   
+                      p.experd-grey
+                        | : 
+                        span.experd-white {{task?.startDate | date: &apos;dd/MM/yy&apos;}} to {{task?.endDate | date: &apos;dd/MM/yy&apos;}}
+                |             
+                .col-xs-6
+                  p.experd-grey Development
+                  |               
+                  p.experd-white.dev-info(*ngfor='let development of task?.employeeTaskDevelopments')
+                    i.icon-check-empty.experd-color([ngclass]="{'icon-check-empty': !development.passed, 'icon-check-marked': development.passed}", aria-hidden='true')
+                    | {{development.description}}
+                |             
+                hr

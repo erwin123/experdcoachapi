@@ -1,0 +1,138 @@
+{
+  "name": "employee",
+  "plural": "employees",
+  "base": "User",
+  "strict": false,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Counts": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "division": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "sex": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "joinDate": {
+      "type": "date"
+    },
+    "doProfileTest": {
+      "type": "boolean"
+    },
+    "doEvaluateCompetence": {
+      "type": "boolean"
+    },
+    "overallRate": {
+      "type": "number"
+    },
+    "roleId": {
+      "type": "number",
+      "default": 31
+    },
+    "email": {
+      "type": "string",
+      "id": true
+    },
+    "password": {
+      "type": "string"
+    },
+    
+      "id":{
+        "type":"number",
+        "id":true
+      
+    }
+  },
+  "validations": [],
+  "relations": {
+    "adminOf": {
+      "type": "hasOne",
+      "model": "company",
+      "foreignKey": "adminId"
+    },
+    "team": {
+      "type": "hasMany",
+      "model": "employee",
+      "foreignKey": "employeeId",
+      "through": "employeeTeam",
+      "keyThrough": "teamId"
+    },
+    "supervisor": {
+      "type": "hasMany",
+      "model": "employee",
+      "foreignKey": "employeeId",
+      "through": "employeeSupervisor",
+      "keyThrough": "supervisorId"
+    },
+    "competences": {
+      "type": "hasMany",
+      "model": "competence",
+      "foreignKey": "employeeId",
+      "through": "employeeCompetence",
+      "keyThrough": "competenceId"
+    },
+    "employeeCompetence": {
+      "type": "hasMany",
+      "model": "employeeCompetence",
+      "foreignKey": "employeeId"
+    },
+    "employeeCompetenceTarget": {
+      "type": "hasMany",
+      "model": "employeeCompetenceTarget",
+      "foreignKey": "employeeId"
+    },
+    "company": {
+      "type": "belongsTo",
+      "model": "company",
+      "foreignKey": ""
+    },
+    "employeeProfileHistories": {
+      "type": "hasMany",
+      "model": "employeeProfileHistory",
+      "foreignKey": ""
+    },
+    "employeeTasks": {
+      "type": "hasMany",
+      "model": "employeeTask",
+      "foreignKey": ""
+    },
+    "assignedBy": {
+      "type": "hasMany",
+      "model": "employeeTask",
+      "foreignKey": "assignedById"
+    },
+    "competenceSet": {
+      "type": "belongsTo",
+      "model": "competenceSet",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

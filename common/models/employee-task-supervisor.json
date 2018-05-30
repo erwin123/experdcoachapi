@@ -1,0 +1,27 @@
+{
+  "name": "employeeTaskSupervisor",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "review": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "employeeTask": {
+      "type": "belongsTo",
+      "model": "employeeTask",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

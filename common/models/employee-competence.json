@@ -1,0 +1,30 @@
+{
+  "name": "employeeCompetence",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "value": {
+      "type": "number"
+    },
+    "oldValue": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "competence": {
+      "type": "belongsTo",
+      "model": "competence"
+    },
+    "employee": {
+      "type": "belongsTo",
+      "model": "employee"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

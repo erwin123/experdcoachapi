@@ -1,0 +1,25 @@
+{
+  "name": "companycompetence",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "company": {
+      "type": "belongsTo",
+      "model": "company",
+      "foreignKey": "companyId"
+    },
+    "competence": {
+      "type": "belongsTo",
+      "model": "competence",
+      "foreignKey": "competenceId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

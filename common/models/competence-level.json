@@ -1,0 +1,33 @@
+{
+  "name": "competenceLevel",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "level": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "competenceSets": {
+      "type": "hasMany",
+      "model": "competenceSet",
+      "foreignKey": "",
+      "through": "competenceSetDetail"
+    },
+    "competence": {
+      "type": "belongsTo",
+      "model": "competence",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

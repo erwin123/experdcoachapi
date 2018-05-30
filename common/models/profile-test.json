@@ -1,0 +1,30 @@
+{
+  "name": "profileTest",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "isActive": {
+      "type": "boolean"
+    },
+    "orderId": {
+      "type": "number"
+    },
+    "question": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "profileTestChoices": {
+      "type": "hasMany",
+      "model": "profileTestChoice",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

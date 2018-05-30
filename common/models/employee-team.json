@@ -1,0 +1,25 @@
+{
+  "name": "employeeTeam",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Counts": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "team": {
+      "type": "belongsTo",
+      "model": "employee"
+    },
+    "employee": {
+      "type": "belongsTo",
+      "model": "employee"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

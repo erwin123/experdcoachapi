@@ -1,0 +1,416 @@
+@import "http://fonts.googleapis.com/css?family=Lato";
+@font-face {
+    font-family: "experd-font";
+    src: url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.eot");
+    src: url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.eot?#iefix") format("embedded-opentype"), url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.woff") format("woff"), url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.ttf") format("truetype"), url("https://api.experd.com/app/assets/fonts/experd-font/experd-font.svg#experd-font") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[data-icon]:before {
+    font-family: "experd-font" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-family: "experd-font" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-experd-logo-wide:before {
+    content: "\62";
+}
+
+.icon-profile-button:before {
+    content: "\63";
+}
+
+.icon-profile-icon:before {
+    content: "\64";
+}
+
+.icon-task-button:before {
+    content: "\65";
+}
+
+.icon-task-icon:before {
+    content: "\66";
+}
+
+.icon-team-button:before {
+    content: "\67";
+}
+
+.icon-experd-logo:before {
+    content: "\61";
+}
+
+.icon-check-empty:before {
+    content: "\69";
+}
+
+.icon-star-filled:before {
+    content: "\6b";
+}
+
+.icon-check-marked:before {
+    content: "\6a";
+}
+
+.icon-star-outline:before {
+    content: "\6c";
+}
+
+.icon-team-icon:before {
+    content: "\6d";
+}
+
+.icon-arrow-left:before {
+    content: "\6f";
+}
+
+.icon-arrow-right:before {
+    content: "\70";
+}
+
+.icon-email:before {
+    content: "\68";
+}
+
+.icon-lock:before {
+    content: "\6e";
+}
+
+.icon-check-off:before {
+    content: "\71";
+}
+
+.icon-check-on:before {
+    content: "\72";
+}
+
+body {
+    font-family: Lato;
+    background: #282f39 !important;
+    h1,
+    h2,
+    p {
+        max-width: 800px;
+        text-align: justify;
+    }
+    .flex {
+        display: flex;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .experd-color {
+        color: #FBAA33;
+    }
+    .experd-grey {
+        color: #555e6c;
+    }
+    .white,
+    .experd-white {
+        color: #fff;
+    }
+    .experd-red {
+        color: #ff0000;
+    }
+    .main-title {
+        clear: both;
+        font-size: 5em;
+        padding-top: 13cm;
+        width: 100%;
+    }
+    .coach-title {
+        padding-top: 13cm;
+    }
+    .completed {
+        stroke: #FBAA33;
+        fill: #FBAA33;
+    }
+    .completeTarget {
+        stroke: #FFF;
+        fill: #FFF;
+    }
+    .not-complete {
+        stroke: #555e6c;
+        fill: #555e6c;
+    }
+    .text-left {
+        text-align: left;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .icon-checklist {
+        float: left;
+        position: absolute;
+        top: 0;
+        left: -21px;
+    }
+    .margin-left {
+        margin-left: 25px;
+    }
+    .push-left {
+        float: left;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .push-right {
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .push-right-target {
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 30px;
+    }
+    .position-relative {
+        position: relative;
+    }
+    .table-competence-header {
+        vertical-align: bottom;
+        border: 0;
+    }
+    .vertical-text {
+        /* Something you can count on */
+        height: 140px;
+        white-space: nowrap;
+        border: 0;
+        >div {
+            -ms-transform: translate(25px, 51px) rotate(315deg);
+            /* IE 9 */
+            -webkit-transform: translate(25px, 51px) rotate(315deg);
+            /* Chrome, Safari, Opera */
+            transform: translate(25px, 51px)/* 45 is really 360 - 45 */
+            rotate(315deg);
+            width: 30px;
+            >span {
+                border-bottom: 1px solid #ccc;
+                padding: 5px 10px;
+            }
+        }
+    }
+    .main {
+        width: 20cm; // mestinya 21cm untuk A4 tapi di hardcode
+        height: 29.7cm;
+        margin: 0 auto;
+        page-break-after: always;
+        position: relative;
+        header {
+            position: absolute;
+            top: 1cm;
+            width: 100%;
+            border-bottom: #555e6c 2px solid;
+            img.logo {
+                width: 3cm;
+            }
+        }
+        content {
+            .header-space {
+                height: 100px;
+                width: 100%;
+            }
+            margin-top: 1cm;
+            clear: both;
+            p.label {
+                font-size: 1em !important;
+                margin-bottom: 0px;
+                &.profile-desc {
+                    font-size: 0.6em !important;
+                }
+            }
+            .average-rate i {
+                font-size: 3em;
+            }
+        }
+        footer {
+            position: absolute;
+            top: 28cm;
+            width: 100%;
+            .push-right {
+                float: right;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+            img.logo {
+                width: 3cm;
+            }
+        }
+    } //@extend-elements
+    //original selectors
+    //table th, table td
+    %extend_1 {
+        border: 1px solid #555e6c;
+        padding: 0.1px;
+        text-align: center;
+    }
+    table {
+        border-collapse: inherit !important;
+        border-spacing: 0;
+        font-size: 0.5em;
+        &.table-padding {
+          td {
+            padding: 10px;
+          }
+        }
+        .white {
+            color: #fff;
+            a {
+                color: #fff;
+            }
+        }
+        .experd-color {
+            color: #fbaa33 !important;
+            a {
+                color: #fbaa33 !important;
+            }
+        }
+        th {
+            @extend %extend_1;
+        }
+        td {
+            @extend %extend_1;
+        }
+        thead {
+            color: #fbaa33;
+            tr:first-child th {
+                &:first-child {
+                    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                    border-radius: 1.5em 0 0 1.5em;
+                    &:last-child {
+                        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                        border-radius: 1.5em;
+                    }
+                }
+                &:last-child {
+                    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                    border-radius: 0 1.5em 1.5em 0;
+                }
+            }
+        }
+        tbody {
+            &:before {
+                content: "-";
+                display: block;
+                line-height: 1em;
+                color: transparent;
+            }
+            tr {
+                &:first-child {
+                    td {
+                        &:first-child {
+                            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                            border-radius: 1.5em 0 0 0;
+                            &:last-child {
+                                //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                                border-radius: 1.5em 1.5em 0 0;
+                            }
+                        }
+                        &:last-child {
+                            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                            border-radius: 0 1.5em 0 0;
+                        }
+                    }
+                    &:last-child td {
+                        &:first-child {
+                            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                            border-radius: 1.5em 0 0 1.5em;
+                            &:last-child {
+                                //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                                border-radius: 1.5em;
+                            }
+                        }
+                        &:last-child {
+                            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                            border-radius: 0 1.5em 1.5em 0;
+                        }
+                    }
+                }
+                &:nth-child(even) {
+                    background: #2c353e;
+                }
+                &:last-child td {
+                    &:first-child {
+                        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                        border-radius: 0 0 0 1.5em;
+                        &:last-child {
+                            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                            border-radius: 0 0 1.5em 1.5em;
+                        }
+                    }
+                    &:last-child {
+                        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+                        border-radius: 0 0 1.5em 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+page[size="A4"] {
+    background: #282f39 !important;
+    width: 21cm;
+    height: 29.7cm;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+    page-break-after: always;
+}
+
+@media print {
+    body,
+    page[size="A4"] {
+        margin: 0;
+        box-shadow: 0;
+        background-color: #282f39 !important;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+.chartdiv {
+    width: 100%;
+    height: 420px;
+    // margin: 30px 0; // border: 1px solid #ccc;
+}
+
+.chartLeft,
+#chartCoachStatSex,
+#chartCoacheeStatSex,
+.chartRight,
+#chartCoachStatDivision,
+#chartCoacheeStatDivision,
+#chartTaskType {
+    width: 100%;
+    height: 420px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    // margin: 0 30px 30px 0;
+    clear: both;
+}

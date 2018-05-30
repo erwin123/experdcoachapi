@@ -1,0 +1,43 @@
+{
+  "name": "company",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Counts": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "accountLimit": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "admin": {
+      "type": "belongsTo",
+      "model": "employee",
+      "foreignKey": "adminId"
+    },
+    "competences": {
+      "type": "hasMany",
+      "model": "competence",
+      "foreignKey": "companyId",
+      "through": "companycompetence"
+    },
+    "employees": {
+      "type": "hasMany",
+      "model": "employee"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
