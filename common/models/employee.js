@@ -8,6 +8,18 @@ fs = require('fs');
 path = require('path');
 loopback = require('loopback');
 Excel = require("exceljs");
+var Role = {
+  Dirut: 2,
+  Direktur: 3,
+  Kadiv: 4,
+  Wakadiv: 5,
+  Kadept: 6,
+  Wakadept: 7,
+  SPV: 8,
+  Koordinator: 9,
+  Staff: 10,
+  NonStaff: 11
+};
 
 module.exports = function (Employee) {
 
@@ -230,7 +242,7 @@ module.exports = function (Employee) {
 
   Employee.import_handleLine = function (ctx, item, options, callback) {
     let myItem = JSON.parse(JSON.stringify(item));
-
+    
     return async.waterfall([
       // validate data
       done => {
@@ -300,6 +312,7 @@ module.exports = function (Employee) {
             transaction: ctx.transaction
           }, (error, found) => {
             var employee;
+            
             if (error) {
               return done(error);
             }
@@ -316,9 +329,9 @@ module.exports = function (Employee) {
                 joinDate: myItem.content[11],
                 sex: myItem.content[10],
                 position: myItem.content[4],
-                roleId: myItem.content[15]
+                roleId: Role[myItem.content[15]] ? Role[myItem.content[15]] : 31
               };
-            }else{
+            } else {
               employee = {
                 // username: 'james.dean',
                 name: myItem.content[1],
@@ -345,6 +358,7 @@ module.exports = function (Employee) {
               employee.doProfileTest = true;
               employee.overallRate = 1;
             }
+            
             return Employee.upsert(employee, {
               transaction: ctx.transaction
             }, (error, employee) => {
@@ -374,10 +388,13 @@ module.exports = function (Employee) {
   }
   Employee.remoteMethod('download', {
     isStatic: true,
-    accepts: {
+    accepts: [{
       arg: 'company',
       type: 'number'
-    },
+    }, {
+      arg: 'roleid',
+      type: 'number'
+    }],
     returns: [{
       arg: 'body',
       type: 'file',
@@ -395,8 +412,7 @@ module.exports = function (Employee) {
     }
   });
 
-  Employee.download = function (company, cb) {
-
+  Employee.download = function (company, roleid, cb) {
     var emp = [];
     var unstream = require('unstream');
 
@@ -467,6 +483,70 @@ module.exports = function (Employee) {
       width: 15
     }];
 
+    if (roleid === 1) {
+      worksheet.columns = [{
+        header: 'Name',
+        key: 'name',
+        width: 15
+      }, {
+        header: 'Email',
+        key: 'email',
+        width: 15
+      }, {
+        header: 'Division',
+        key: 'division',
+        width: 15
+      }, {
+        header: 'Position',
+        key: 'position',
+        width: 15
+      }, {
+        header: 'Profile',
+        key: 'profile',
+        width: 15
+      }, {
+        header: 'Task on Going',
+        key: 'taskOnGoing',
+        width: 15
+      }, {
+        header: 'Task Finish',
+        key: 'taskFinish',
+        width: 15
+      }, {
+        header: 'Team',
+        key: 'team',
+        width: 15
+      }, {
+        header: 'Date of Birth',
+        key: 'age',
+        width: 15
+      }, {
+        header: 'Sex',
+        key: 'sex',
+        width: 15
+      }, {
+        header: 'Date of Joining',
+        key: 'joinDate',
+        width: 15
+      }, {
+        header: 'Create Task',
+        key: 'taskCreate',
+        width: 15
+      }, {
+        header: 'Competence Submission Status',
+        key: 'compSubmission',
+        width: 15
+      }, {
+        header: 'Overall Rate',
+        key: 'overall',
+        width: 15
+      }, {
+        header: 'Role',
+        key: 'roleId',
+        width: 20
+      }];
+    }
+
     worksheet.getRow(1).font = {
       bold: true
     };
@@ -498,25 +578,70 @@ module.exports = function (Employee) {
         }
       }
 
+      Object.prototype.getKeyByValue = function (value) {
+        for (var prop in this) {
+          if (this.hasOwnProperty(prop)) {
+            if (this[prop] === value)
+              return prop;
+          }
+        }
+      }
+
       for (let data of datas) {
         let myData = JSON.parse(JSON.stringify(data));
-        worksheet.addRow([
-          myData.name,
-          myData.email,
-          myData.division,
-          myData.position,
-          myData.employeeProfileHistories[0] ? myData.employeeProfileHistories[0].profileStamp : '',
-          getTasks(false, myData.employeeTasks),
-          getTasks(true, myData.employeeTasks),
-          myData.team.length,
-          new Date(myData.dob),
-          myData.sex,
-          new Date(myData.joinDate),
-          myData.assignedBy.length,
-          myData.doEvaluateCompetence ? 'Yes' : '',
-          myData.overallRate
-        ]);
+        if (roleid === 1) {
+          worksheet.addRow([
+            myData.name,
+            myData.email,
+            myData.division,
+            myData.position,
+            myData.employeeProfileHistories[0] ? myData.employeeProfileHistories[0].profileStamp : '',
+            getTasks(false, myData.employeeTasks),
+            getTasks(true, myData.employeeTasks),
+            myData.team.length,
+            new Date(myData.dob),
+            myData.sex,
+            new Date(myData.joinDate),
+            myData.assignedBy.length,
+            myData.doEvaluateCompetence ? 'Yes' : '',
+            myData.overallRate,
+            Role.getKeyByValue(myData.roleId)
+          ]);
+        }
+        else {
+          worksheet.addRow([
+            myData.name,
+            myData.email,
+            myData.division,
+            myData.position,
+            myData.employeeProfileHistories[0] ? myData.employeeProfileHistories[0].profileStamp : '',
+            getTasks(false, myData.employeeTasks),
+            getTasks(true, myData.employeeTasks),
+            myData.team.length,
+            new Date(myData.dob),
+            myData.sex,
+            new Date(myData.joinDate),
+            myData.assignedBy.length,
+            myData.doEvaluateCompetence ? 'Yes' : '',
+            myData.overallRate
+          ]);
+
+        }
+
       }
+
+      //adding data validation
+      var cellVal = worksheet.getColumn('roleId');
+      cellVal.eachCell({ includeEmpty: true }, function (cell, rowNumber) {
+        cell.dataValidation = {
+          type: 'list',
+          allowBlank: true,
+          showErrorMessage: true,
+          formulae: ['"'+Object.getOwnPropertyNames(Role).toString()+'"'],
+          promptTitle: 'Role Selection',
+          prompt: 'The value should on list'
+        };
+      });
 
       // then write it through unstream to a buffer
       workbook.xlsx.write(unstream({}, function (data) {
