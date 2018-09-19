@@ -43,14 +43,16 @@ module.exports = function (app) {
     email: 'dmastag@yahoo.com',
     password: 'thisisasecret',
     companyId: 1,
-    position: 'Administrator'
+    position: 'Administrator',
+    roleId:10
   }, {
     username: 'julian.alimin',
     name: 'Julian Alimin',
     email: 'julian.alimin@yahoo.com',
     password: 'thisisasecret',
     companyId: 1,
-    position: 'Manager'
+    position: 'Manager',
+    roleId:10
   }, {
     username: 'donny.siregar',
     name: 'Donny Siregar',
@@ -64,7 +66,8 @@ module.exports = function (app) {
     doEvaluateCompetence: false,
     doProfileTest: false,
     overallRate: 1,
-    position: 'Director'
+    position: 'Director',
+    roleId:10
   }, {
     username: 'john.denver',
     name: 'John Denver',
@@ -78,7 +81,8 @@ module.exports = function (app) {
     doEvaluateCompetence: false,
     doProfileTest: true,
     overallRate: 1,
-    position: 'Manager'
+    position: 'Manager',
+    roleId:10
   }, {
     username: 'sarah.rose',
     name: 'Sarah Rose',
@@ -92,7 +96,8 @@ module.exports = function (app) {
     doEvaluateCompetence: true,
     doProfileTest: true,
     overallRate: 1,
-    position: 'Junior Staff'
+    position: 'Junior Staff',
+    roleId:10
   }, {
     username: 'danny.g',
     name: 'Danny G.',
@@ -106,7 +111,8 @@ module.exports = function (app) {
     doEvaluateCompetence: true,
     doProfileTest: true,
     overallRate: 1,
-    position: 'Junior Staff'
+    position: 'Junior Staff',
+    roleId:10
   }, {
     username: 'james.dean',
     name: 'James Dean',
@@ -120,7 +126,8 @@ module.exports = function (app) {
     doEvaluateCompetence: false,
     doProfileTest: false,
     overallRate: 1,
-    position: 'Senior Staff'
+    position: 'Senior Staff',
+    roleId:10
   }, {
     username: 'jamie.oliver',
     name: 'Jamie Oliver',
@@ -134,9 +141,12 @@ module.exports = function (app) {
     doEvaluateCompetence: false,
     doProfileTest: true,
     overallRate: 1,
-    position: 'Asst. Manager'
+    position: 'Asst. Manager',
+    roleId:10
   }], function (err, employees) {
-    if (err) return err;
+   
+    if (err) 
+      return err;
 
     Profile.create({
       title: 'Plodder',

@@ -242,7 +242,7 @@ module.exports = function (Employee) {
 
   Employee.import_handleLine = function (ctx, item, options, callback) {
     let myItem = JSON.parse(JSON.stringify(item));
-    
+
     return async.waterfall([
       // validate data
       done => {
@@ -312,7 +312,7 @@ module.exports = function (Employee) {
             transaction: ctx.transaction
           }, (error, found) => {
             var employee;
-            
+
             if (error) {
               return done(error);
             }
@@ -329,7 +329,7 @@ module.exports = function (Employee) {
                 joinDate: myItem.content[11],
                 sex: myItem.content[10],
                 position: myItem.content[4],
-                roleId: Role[myItem.content[15]] ? Role[myItem.content[15]] : 31
+                roleId: Role[myItem.content[15]] ? Role[myItem.content[15]] : 10
               };
             } else {
               employee = {
@@ -358,7 +358,7 @@ module.exports = function (Employee) {
               employee.doProfileTest = true;
               employee.overallRate = 1;
             }
-            
+
             return Employee.upsert(employee, {
               transaction: ctx.transaction
             }, (error, employee) => {
@@ -578,15 +578,6 @@ module.exports = function (Employee) {
         }
       }
 
-      Object.prototype.getKeyByValue = function (value) {
-        for (var prop in this) {
-          if (this.hasOwnProperty(prop)) {
-            if (this[prop] === value)
-              return prop;
-          }
-        }
-      }
-
       for (let data of datas) {
         let myData = JSON.parse(JSON.stringify(data));
         if (roleid === 1) {
@@ -605,7 +596,7 @@ module.exports = function (Employee) {
             myData.assignedBy.length,
             myData.doEvaluateCompetence ? 'Yes' : '',
             myData.overallRate,
-            Role.getKeyByValue(myData.roleId)
+            (_.invert(Role))[myData.roleId]
           ]);
         }
         else {
@@ -631,17 +622,19 @@ module.exports = function (Employee) {
       }
 
       //adding data validation
-      var cellVal = worksheet.getColumn('roleId');
-      cellVal.eachCell({ includeEmpty: true }, function (cell, rowNumber) {
-        cell.dataValidation = {
-          type: 'list',
-          allowBlank: true,
-          showErrorMessage: true,
-          formulae: ['"'+Object.getOwnPropertyNames(Role).toString()+'"'],
-          promptTitle: 'Role Selection',
-          prompt: 'The value should on list'
-        };
-      });
+      if (roleid === 1) {
+        var cellVal = worksheet.getColumn('roleId');
+        cellVal.eachCell({ includeEmpty: true }, function (cell, rowNumber) {
+          cell.dataValidation = {
+            type: 'list',
+            allowBlank: true,
+            showErrorMessage: true,
+            formulae: ['"' + Object.getOwnPropertyNames(Role).toString() + '"'],
+            promptTitle: 'Role Selection',
+            prompt: 'The value should on list'
+          };
+        });
+      }
 
       // then write it through unstream to a buffer
       workbook.xlsx.write(unstream({}, function (data) {

@@ -18,7 +18,7 @@ html
         }],
         "theme": "light",
         "outlineColor": "",
-        "color": "#FFFFFF",
+        "color": "#000",
         "borderAlpha": 0,
         "startDuration": 0,
         "dataProvider": !{JSON.stringify(demographicReport.coachStatistic.sex)},
@@ -35,7 +35,7 @@ html
         }],
         "theme": "light",
         "outlineColor": "",
-        "color": "#FFFFFF",
+        "color": "#000",
         "borderAlpha": 0,
         "startDuration": 0,
         "dataProvider": !{JSON.stringify(demographicReport.coachStatistic.division)},
@@ -52,7 +52,7 @@ html
         }],
         "theme": "light",
         "outlineColor": "",
-        "color": "#FFFFFF",
+        "color": "#000",
         "borderAlpha": 0,
         "startDuration": 0,
         "dataProvider": !{JSON.stringify(demographicReport.coacheeStatistic.sex)},
@@ -69,7 +69,7 @@ html
         }],
         "theme": "light",
         "outlineColor": "",
-        "color": "#FFFFFF",
+        "color": "#000",
         "borderAlpha": 0,
         "startDuration": 0,
         "dataProvider": !{JSON.stringify(demographicReport.coacheeStatistic.division)},
@@ -83,7 +83,7 @@ html
         "type": "pie",
         "theme": "light",
         "outlineColor": "",
-        "color": "#FFFFFF",
+        "color": "#000",
         "borderAlpha": 0,
         "startDuration": 0,
         "dataProvider": !{JSON.stringify(demographicReport.taskStatistic)},
@@ -128,11 +128,15 @@ html
           - transformtext = 'translate( ' + (target - i) * node_width + ' ' + addY + ')'
             use(transform=transformtext, class=(completed) > (target - i) ? completeClass : 'not-complete', xlink:href='#step')
         line(x1=x_startposition, y1=y_startposition + addY, x2=(node_width * completed) + x_startposition, y2=y_startposition + addY, stroke-width=inner_stroke, style='stroke-linecap:round', class=completeClass)
-        text(x=x_startposition + (target * node_width + outer_circle) + (outer_circle * 2) - 10, y=(outer_circle * 2 ) + y_startposition + 10, font-family='Verdana', font-size=(outer_circle * 2 * 2) + 5, style='fill: #FBAA33') #{label}
+        text(x=x_startposition + (target * node_width + outer_circle) + (outer_circle * 2) - 10, y=(outer_circle * 2 ) + y_startposition + 10, font-family='Verdana', font-size=(outer_circle * 2 * 2) + 5, style='fill: #555e6c') #{label}
     .main.flex.page
       h2.experd-color.text-center.main-title Report
+      h2.experd-color.text-center.company-title #{employeeCoachReport[0].coach.company}
+      .header-space
+      content.w-100
       footer
-        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+        .company-title-footer #{employeeCoachReport[0].coach.company}
+        img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
     each employees, index in overviewEmployeeList
       .main.flex.page
         header
@@ -189,12 +193,12 @@ html
                   each item in columns
                     td &nbsp;
         footer
-          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
           h5.experd-grey.push-right Report Experd Score
     .main.flex.page
       h2.experd-color.text-center.main-title Coach & <br> Coachee Report
       footer
-        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+        img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
     each coachReport in employeeCoachReport
       .main.page
         h4.experd-grey.coach-title Coach
@@ -203,7 +207,7 @@ html
         each coachee in coachReport.coachee
           h2.experd-color  #{coachee.name}
         footer
-          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
           h5.experd-grey.push-right Report Experd Score
           //- span.experd-color &nbsp;02
       .main.flex.page
@@ -272,7 +276,7 @@ html
           //- h3.experd-grey Resume
           //- p.experd-white Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         footer
-          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
           h5.experd-grey.push-right Report Experd Score
       each coachee in coachReport.coachee    
         .main.flex.page
@@ -349,7 +353,7 @@ html
             //- h4.experd-color.text-center Development Program Period
             //- p.experd-white Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           footer
-            img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+            img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
             h5.experd-grey.push-right Report Experd Score
         if coachee.taskList.length
           each taskList in coachee.taskList
@@ -407,7 +411,7 @@ html
                                 h4.experd-color.text-left Supervisor Review
                                 h5.experd-white.text-left #{task.employeeTaskSupervisor().review}
               footer
-                img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+                img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
                 h5.experd-grey.push-right Report Experd Score
     .main.flex.page
       header
@@ -423,15 +427,15 @@ html
               td.experd-grey Total Coach: 
                 span.experd-color #{demographicReport.totalCoach}
             tr
-              td(colspan='2') 
+              td(colspan='10') 
                 div.position-relative.chartdiv &nbsp;
                   #chartCoachStatSex
             tr
-              td(colspan='2') 
+              td(colspan='10') 
                 div.position-relative.chartdiv &nbsp;
                   #chartCoachStatDivision
       footer
-        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+        img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
         h5.experd-grey.push-right Report Experd Score
     .main.flex.page
       header
@@ -447,15 +451,15 @@ html
               td.experd-grey Total Coachee: 
                 span.experd-color #{demographicReport.totalCoachee}
             tr
-              td(colspan='2') 
+              td(colspan='10') 
                 div.position-relative.chartdiv &nbsp;
                   #chartCoacheeStatSex
             tr
-              td(colspan='2') 
+              td(colspan='10') 
                 div.position-relative.chartdiv &nbsp;
                   #chartCoacheeStatDivision
       footer
-        img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+        img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
         h5.experd-grey.push-right Report Experd Score
     .main.flex.page
       header
@@ -471,7 +475,7 @@ html
               td.experd-grey Total Task: 
                 span.experd-color #{demographicReport.totalTask}
             tr
-              td(colspan='2') 
+              td(colspan='10') 
                 div.position-relative.chartdiv &nbsp;
                   #chartTaskType
     each employees, index in overviewEmployeeList
@@ -503,5 +507,5 @@ html
                     else
                       td.experd-red #{competence.print}
         footer
-          img.logo(src="https://api.experd.com/app/assets/images/logo.png")
+          img.logo(src="https://api.experd.com/app/assets/images/logo-lite.png")
           h5.experd-grey.push-right Report Experd Score

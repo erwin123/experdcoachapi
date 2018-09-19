@@ -39,8 +39,7 @@
       "type": "number"
     },
     "roleId": {
-      "type": "number",
-      "default": 31
+      "type": "number"
     },
     "email": {
       "type": "string",
@@ -102,12 +101,12 @@
     "employeeProfileHistories": {
       "type": "hasMany",
       "model": "employeeProfileHistory",
-      "foreignKey": ""
+      "foreignKey": "employeeId"
     },
     "employeeTasks": {
       "type": "hasMany",
       "model": "employeeTask",
-      "foreignKey": ""
+      "foreignKey": "employeeId"
     },
     "assignedBy": {
       "type": "hasMany",
