@@ -148,10 +148,6 @@
     "dataSource": null,
     "public": true
   },
-  "Container": {
-    "dataSource": "container",
-    "public": true
-  },
   "FileUpload": {
     "dataSource": "db",
     "public": true

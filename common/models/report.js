@@ -462,7 +462,8 @@ module.exports = function (Report) {
                     teammemberCompetence2: teammemberCompetence2,
                     teammemberCompetence1: teammemberCompetence1
                   }
-                  team.push(thisTeamMember)
+                  if(thisTeamMember.overall >0)
+                    team.push(thisTeamMember)
                 }
 
                 let count = 0;
@@ -614,6 +615,7 @@ module.exports = function (Report) {
                       orientation: 'portrait',
                       margin: "0cm",
                       headerHeight: "0cm",
+                      
                     },
                     // fitToPage: true,
                   }, function (err, pdf) {

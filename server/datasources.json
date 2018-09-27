@@ -5,20 +5,15 @@
     "file": "mydata.json"
   },
   "db": {
-    "host": "localhost",
+    "host": "139.59.117.185",
     "port": 3306,
+    "url": "mysql://experduser:p4ssword@139.59.117.185/experddb",
     "database": "experddb",
-    "password": "admin",
+    "password": "p4ssword",
     "name": "db",
-    "user": "root",
+    "user": "experduser",
     "connector": "mysql",
-    "connectionLimit": 1500,
+    "connectionLimit":1500,
     "poolIdleTimeout": 1200000
-  },
-  "container": {
-    "name": "container",
-    "connector": "loopback-component-storage",
-    "provider": "filesystem",
-    "root": "tmp"
   }
 }
